@@ -1,8 +1,8 @@
 package com.example.loremperpus.core.data.source.remote.network
 
 import com.example.loremperpus.core.data.source.remote.request.LoginRequest
-import com.example.loremperpus.core.data.source.remote.request.RegisterWithGoogleRequest
 import com.example.loremperpus.core.data.source.remote.request.RegisterRequest
+import com.example.loremperpus.core.data.source.remote.response.BookResponse
 import com.example.loremperpus.core.data.source.remote.response.LoginRespose
 import com.example.loremperpus.core.data.source.remote.response.MeResponse
 import okhttp3.ResponseBody
@@ -27,4 +27,10 @@ interface ApiService {
     suspend fun getme(
         @Header("Authorization") token: String,
     ): Response<MeResponse>
+
+    @GET("book")
+    suspend fun getBook(
+        @Header("Authorization") token: String,
+    ): Response<BookResponse>
+
 }

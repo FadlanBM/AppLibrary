@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import com.example.loremperpus.core.data.source.remote.network.State
 import com.example.loremperpus.core.data.source.remote.request.LoginRequest
 import com.example.loremperpus.databinding.ActivityLoginBinding
+import com.example.loremperpus.ui.MenuActivity
 import com.example.loremperpus.util.Prefs
 import com.google.firebase.auth.FirebaseAuth
 import com.inyongtisto.myhelper.extension.pushActivity
@@ -75,7 +76,6 @@ class LoginActivity : AppCompatActivity() {
                 State.SUCCESS -> {
                     val token=it?.data
                     Prefs.token=token.toString()
-                    Log.e("token",token.toString())
                     binding.pbLoading.isVisible=false
                     pushActivity(MenuActivity::class.java)
                 }

@@ -9,10 +9,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import com.example.loremperpus.R
 import com.example.loremperpus.core.data.source.remote.network.State
+import com.example.loremperpus.core.data.source.remote.request.LoginRequest
 import com.example.loremperpus.core.data.source.remote.request.RegisterRequest
 import com.example.loremperpus.core.data.source.remote.request.RegisterWithGoogleRequest
 import com.example.loremperpus.databinding.ActivityMainBinding
+import com.example.loremperpus.ui.MenuActivity
 import com.example.loremperpus.util.Constants
+import com.example.loremperpus.util.Prefs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -26,11 +29,18 @@ import com.inyongtisto.myhelper.extension.toastWarning
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
-    private lateinit var googleSignInClient: GoogleSignInClient
-    private var firebaseAuth= FirebaseAuth.getInstance()
     private val viewModel: AuthViewModel by viewModel()
+    private lateinit var binding:ActivityMainBinding
+    private var firebaseAuth=FirebaseAuth.getInstance()
 
+    override fun onStart() {
+        super.onStart()
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser != null && currentUser.isEmailVerified) {
+            binding.pbLoading.isVisible=true
+            postLogin(currentUser.uid,currentUser.email.toString())
+        }
+    }
     companion object{
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +54,32 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnRegister.setOnClickListener {
             pushActivity(RegisterActivity::class.java)
+        }
+    }
+
+    private fun postLogin(uid:String,email:String){
+        val body= LoginRequest(
+            email,
+            uid
+        )
+        Log.e("postLogin",uid)
+        viewModel.login(body).observe(this) {
+            when (it.state) {
+                State.SUCCESS -> {
+                    val token=it?.data
+                    Prefs.token=token.toString()
+                    binding.pbLoading.isVisible=false
+                    pushActivity(MenuActivity::class.java)
+                }
+
+                State.ERROR -> {
+                    toastWarning(it?.message.toString())
+                    binding.pbLoading.isVisible=false
+                }
+                State.LOADING -> {
+
+                }
+            }
         }
     }
 }

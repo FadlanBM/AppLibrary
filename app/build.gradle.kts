@@ -5,14 +5,6 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        getByName("debug") {
-            storeFile = file("C:\\Users\\fadlan\\Documents\\LoremLibrary\\keystore\\keystore.jks")
-            storePassword = "12345123"
-            keyAlias = "keylorem"
-            keyPassword = "12345123"
-        }
-    }
     namespace = "com.example.loremperpus"
     compileSdk = 34
 
