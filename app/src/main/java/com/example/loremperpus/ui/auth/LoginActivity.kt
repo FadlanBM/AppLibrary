@@ -99,6 +99,7 @@ class LoginActivity : AppCompatActivity() {
         builder.setTitle(title)
             .setMessage(message)
             .setPositiveButton("OK") { dialog, which ->
+                binding.pbLoading.isVisible=false
             }
 
         // Create the AlertDialog object and show it

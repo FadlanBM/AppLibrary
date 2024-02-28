@@ -8,9 +8,6 @@ class CartSharePreft constructor(context: Context) {
     companion object{
         private const val shareName="MyAppCart"
         private const val shareId="id"
-        private const val shareCount="count"
-        private const val sharePrice="price"
-        private const val shareLimitCount="LimitCount"
     }
 
     val sharePreft: SharedPreferences =context.getSharedPreferences(shareName,Context.MODE_PRIVATE)

@@ -22,7 +22,7 @@
             android:layout_height="@dimen/_150sdp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/asdasjd"/>
+            />
 
         <TextView
             android:id="@+id/titleBookTV"
