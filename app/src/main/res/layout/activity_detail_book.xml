@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/white">
-
+    android:background="@android:color/white"
+    app:layout_scrollEffect="compress">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/RLDetailView">
     <ImageView
         android:id="@+id/book_image"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/asdasjd" />
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +28,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Product Title"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
         <LinearLayout
@@ -54,7 +57,7 @@
         android:orientation="horizontal"/>
 
     <TextView
-        android:id="@+id/product_price"
+        android:id="@+id/bookAuthorTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/CategoryListRv"
@@ -62,39 +65,41 @@
         android:layout_marginTop="@dimen/_7sdp"
         android:paddingEnd="16dp"
         android:paddingBottom="8dp"
-        android:text="Rp 100.000"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/add_to_cart_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/product_price"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="Tambah ke Keranjang"
-        android:textColor="@android:color/white" />
+        <Button
+            android:id="@+id/add_add_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookAuthorTv"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Tambah ke Keranjang"
+            android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/product_description_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/add_to_cart_button"
+        android:layout_below="@id/add_add_cart"
         android:padding="16dp"
         android:text="Deskripsi Buku"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/product_description"
+        android:id="@+id/book_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/product_description_title"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:paddingBottom="16dp"
-        android:text="Deskripsi Produk yang sangat panjang dan detail. Deskripsi ini berisi informasi penting tentang produk yang ingin Anda beli."
         android:textColor="@android:color/black"
         android:textSize="16sp" />
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -1,29 +1,17 @@
 package com.example.loremperpus.ui.ui.list_book
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loremperpus.AdapterRV.BookRV
-import com.example.loremperpus.core.data.source.models.Book
 import com.example.loremperpus.core.data.source.remote.network.State
-import com.example.loremperpus.core.data.source.remote.request.LoginRequest
 import com.example.loremperpus.databinding.FragmentListBookBinding
 import com.example.loremperpus.item.ListBook
-import com.example.loremperpus.ui.MenuActivity
-import com.example.loremperpus.ui.auth.AuthViewModel
 import com.example.loremperpus.util.Prefs
-import com.inyongtisto.myhelper.extension.pushActivity
 import com.inyongtisto.myhelper.extension.toastWarning
-import org.json.JSONArray
-import org.json.JSONException
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListBookFragment : Fragment() {
@@ -61,7 +49,8 @@ class ListBookFragment : Fragment() {
                                 val id=book.ID
                                 val author = book.author
                                 val title = book.title
-                                booklist.add(ListBook(title,author,id))
+                                val img=book.img
+                                booklist.add(ListBook(title,author,id,img))
                             }
                             val adapter= BookRV(booklist,requireContext())
                             recyclerView.adapter=adapter
