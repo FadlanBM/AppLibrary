@@ -1,5 +1,6 @@
-package com.example.loremperpus.ui.ui.cart
+package com.example.loremperpus.ui.cart
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,11 +19,13 @@ import com.example.loremperpus.core.data.source.remote.network.State
 import com.example.loremperpus.databinding.FragmentCartBinding
 import com.example.loremperpus.item.ListBook
 import com.example.loremperpus.item.ListCart
-import com.example.loremperpus.ui.ui.list_book.ListBookViewModel
+import com.example.loremperpus.ui.Lending.LendingFormActivity
+import com.example.loremperpus.ui.list_book.ListBookViewModel
 import com.example.loremperpus.util.CartSharePreft
 import com.example.loremperpus.util.Constants
 import com.example.loremperpus.util.Prefs
 import com.example.loremperpus.util.SwipeToDeleteCallback
+import com.inyongtisto.myhelper.extension.pushActivity
 import com.inyongtisto.myhelper.extension.toastWarning
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -49,6 +52,10 @@ class CartFragment : Fragment() {
         val ids=CartSharePreft(requireContext()).getId()
         if (ids.isEmpty()){
             btnPeminjaman.isVisible=false
+        }
+
+        binding.btnPeminjaman.setOnClickListener {
+            startActivity(Intent(requireContext(),LendingFormActivity::class.java))
         }
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -81,9 +88,9 @@ class CartFragment : Fragment() {
                     val id=bookResponse?.ID.toString()
                     val title=bookResponse?.title.toString()
                     val author=bookResponse?.author.toString()
-                    val no_inventaris=bookResponse?.no_inventaris.toString()
+                    val releseTH=bookResponse?.year_published.toString()
                     val img=bookResponse?.img.toString()
-                    booklist.add(ListCart(id,author,no_inventaris,img,title))
+                    booklist.add(ListCart(id,author,img,releseTH,title))
                     val adapter=CartRV(booklist,requireContext())
                     recyclerView.adapter=adapter
                 }

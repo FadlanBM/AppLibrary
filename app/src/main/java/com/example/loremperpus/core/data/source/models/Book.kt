@@ -13,7 +13,6 @@ data class Book(
     val code: String,
     val description: String,
     val img: String,
-    val no_inventaris: String,
     val publisher: String,
     val title: String,
     val year_published: Int

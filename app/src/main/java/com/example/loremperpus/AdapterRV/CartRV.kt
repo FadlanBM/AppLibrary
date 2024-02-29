@@ -17,7 +17,7 @@ class CartRV(val item:List<ListCart>, val context: Context): RecyclerView.Adapte
     class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
         val title:TextView=view.findViewById(R.id.tvTitleBook)
         val author:TextView=view.findViewById(R.id.tvAuthorName)
-        val noinventaris:TextView=view.findViewById(R.id.tvNoInventaris)
+        val releseTV:TextView=view.findViewById(R.id.tvReleseTH)
         val img:ImageView=view.findViewById(R.id.image_book)
     }
 
@@ -35,7 +35,7 @@ class CartRV(val item:List<ListCart>, val context: Context): RecyclerView.Adapte
         val items=item[position]
         holder.title.text=items.title
         holder.author.text=items.author
-        holder.noinventaris.text=items.no_inventaris
+        holder.releseTV.text=items.year_published.toString()
         Picasso.get().load(Constants.BASE_Image+items.img).into(holder.img)
     }
 }

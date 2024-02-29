@@ -22,8 +22,16 @@ class MenuActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
+        val status = intent.getStringExtra("back")
+
         val navController = findNavController(R.id.nav_host_fragment_activity_menu)
 
         navView.setupWithNavController(navController)
+
+        if (status == "cart") {
+            navController.navigate(R.id.navigation_cart)
+        }
+
+
     }
 }

@@ -1,4 +1,4 @@
-package com.example.loremperpus.ui.ui.settings
+package com.example.loremperpus.ui.settings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

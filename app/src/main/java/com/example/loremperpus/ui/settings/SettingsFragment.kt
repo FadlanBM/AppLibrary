@@ -1,4 +1,4 @@
-package com.example.loremperpus.ui.ui.settings
+package com.example.loremperpus.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater

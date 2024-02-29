@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ui.cart.CartFragment">
+    tools:context=".ui.cart.CartFragment">
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:listitem="@layout/list_cart"
+    android:layout_marginHorizontal="@dimen/_5sdp"
     android:id="@+id/tvListCart"/>
     <com.google.android.material.button.MaterialButton
         android:layout_width="@dimen/_200sdp"

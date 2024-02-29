@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.loremperpus.R
 import com.example.loremperpus.core.data.source.models.Book
 import com.example.loremperpus.item.ListBook
-import com.example.loremperpus.ui.ui.list_book.DetailBookActivity
+import com.example.loremperpus.ui.list_book.DetailBookActivity
 import com.example.loremperpus.util.Constants
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
@@ -40,7 +40,7 @@ class BookRV(val item:List<ListBook>, val context: Context): RecyclerView.Adapte
         holder.titlebook.text=items.title
         holder.authorbook.text=items.author
         holder.btnDetail.setOnClickListener {
-            val intent=Intent(context,DetailBookActivity::class.java)
+            val intent=Intent(context, DetailBookActivity::class.java)
             Log.e("idToken",items.ID.toString())
             intent.putExtra("id_Book",items.ID)
             context.startActivity(intent)

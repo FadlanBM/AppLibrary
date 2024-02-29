@@ -1,4 +1,4 @@
-package com.example.loremperpus.ui.ui.list_book
+package com.example.loremperpus.ui.list_book
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
