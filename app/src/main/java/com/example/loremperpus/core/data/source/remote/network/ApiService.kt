@@ -1,10 +1,14 @@
 package com.example.loremperpus.core.data.source.remote.network
 
+import com.example.loremperpus.core.data.source.remote.request.LandingRequest
+import com.example.loremperpus.core.data.source.remote.request.ListLendingRequest
 import com.example.loremperpus.core.data.source.remote.request.LoginRequest
 import com.example.loremperpus.core.data.source.remote.request.RegisterRequest
 import com.example.loremperpus.core.data.source.remote.response.BookDetailResponse
 import com.example.loremperpus.core.data.source.remote.response.BookResponse
 import com.example.loremperpus.core.data.source.remote.response.CategoryResponse
+import com.example.loremperpus.core.data.source.remote.response.LendingResponse
+import com.example.loremperpus.core.data.source.remote.response.ListLending
 import com.example.loremperpus.core.data.source.remote.response.LoginRespose
 import com.example.loremperpus.core.data.source.remote.response.MeResponse
 import okhttp3.ResponseBody
@@ -41,9 +45,32 @@ interface ApiService {
         @Path("id") bookID: Int
     ): Response<CategoryResponse>
     @GET("book/{id}")
-    suspend fun getDetailData(
+    suspend fun getDetailBook(
         @Header("Authorization") token: String,
         @Path("id") bookID: Int
     ): Response<BookDetailResponse>
-
+    @GET("lending")
+    suspend fun getLending(
+        @Header("Authorization") token: String,
+    ): Response<ListLending>
+    @POST("lending/create")
+    suspend fun postDataLendings(
+        @Header("Authorization") token: String,
+        @Body lading:LandingRequest
+    ): Response<LendingResponse>
+    @GET("lending/{id}")
+    suspend fun getDetailDataLendings(
+        @Header("Authorization") token: String,
+        @Path("id") bookID: Int
+    ): Response<LendingResponse>
+    @POST("lending/list")
+    suspend fun postDataListLandings(
+        @Header("Authorization") token: String,
+        @Body lading:ListLendingRequest
+    ): Response<ResponseBody>
+    @GET("lending/history/{id}")
+    suspend fun getDetailHistoryLending(
+        @Header("Authorization") token: String,
+        @Path("id") lendingID: Int
+    ): Response<ResponseBody>
 }

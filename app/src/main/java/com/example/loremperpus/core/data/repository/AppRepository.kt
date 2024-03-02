@@ -4,6 +4,8 @@ import android.util.Log
 import com.example.loremperpus.core.data.source.local.LocalDataSource
 import com.example.loremperpus.core.data.source.remote.RemoteDataSouce
 import com.example.loremperpus.core.data.source.remote.network.Resource
+import com.example.loremperpus.core.data.source.remote.request.LandingRequest
+import com.example.loremperpus.core.data.source.remote.request.ListLendingRequest
 import com.example.loremperpus.core.data.source.remote.request.LoginRequest
 import com.example.loremperpus.core.data.source.remote.request.RegisterRequest
 import com.example.loremperpus.core.data.source.remote.request.RegisterWithGoogleRequest
@@ -98,10 +100,96 @@ class AppRepository(val local:LocalDataSource,val remote:RemoteDataSouce) {
             Log.e("TAG","Login Error" + e.message)
         }
     }
-    fun getDetailData(token:String,id:Int) = flow {
+    fun getDetailBook(token:String,id:Int) = flow {
         emit(Resource.loading(null))
         try {
-            remote.getDetailData(token,id).let {
+            remote.getDetailBook(token,id).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun getLending(token:String) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.getLending(token).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun postDataLendings(token:String,request: LandingRequest) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.postDataLendings(token,request).let {
+                if (it.isSuccessful){
+                    val body=it.body()?.data
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+
+    fun getDetailDataLendings(token:String,id: Int) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.getDetailDataLendings(token,id).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body?.data))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun postDataListLandings(token:String,request:ListLendingRequest) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.postDataListLandings(token,request).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun getDetailHistoryLending(token:String,id:Int) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.getDetailHistoryLending(token,id).let {
                 if (it.isSuccessful){
                     val body=it.body()
                     emit(Resource.success(body))

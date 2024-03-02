@@ -37,7 +37,8 @@ class ListBookFragment : Fragment() {
     }
 
     private fun getBook(){
-        viewModel.getBook(Prefs.token).observe(viewLifecycleOwner) {
+        val token="Bearer ${Prefs.token}"
+        viewModel.getBook(token).observe(viewLifecycleOwner) {
             when (it.state) {
                 State.SUCCESS -> {
                     val bookResponse = it.data

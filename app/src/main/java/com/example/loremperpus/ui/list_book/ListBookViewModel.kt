@@ -9,5 +9,5 @@ import com.example.loremperpus.core.data.repository.AppRepository
 class ListBookViewModel(val repo: AppRepository) : ViewModel() {
     fun getBook(token:String)=repo.getBook(token).asLiveData()
     fun getlistcategory(token:String,id:Int)=repo.getlistcategory(token,id).asLiveData()
-    fun getDetailData(token:String,id:Int)=repo.getDetailData(token,id).asLiveData()
+    fun getDetailBook(token:String,id:Int)=repo.getDetailBook(token,id).asLiveData()
 }

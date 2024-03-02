@@ -18,13 +18,13 @@
         tools:layout="@layout/fragment_cart" />
 
     <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.example.loremperpus.ui.settings.SettingsFragment"
-        android:label="@string/settings"
-        tools:layout="@layout/fragment_notifications" />
-    <fragment
         android:id="@+id/navigation_history"
         android:name="com.example.loremperpus.ui.history.HistoryFragment"
         android:label="@string/history"
         tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.loremperpus.ui.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_notifications" />
 </navigation>

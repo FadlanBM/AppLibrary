@@ -87,7 +87,7 @@ class DetailBookActivity : AppCompatActivity() {
         }
     }
     private fun getDetailBook(id:Int){
-        viewModel.getDetailData(Prefs.token,id).observe(this) {
+        viewModel.getDetailBook(Prefs.token,id).observe(this) {
             when (it.state) {
                 State.SUCCESS -> {
                     val bookResponse = it.data?.data

@@ -7,5 +7,5 @@ import androidx.lifecycle.asLiveData
 import com.example.loremperpus.core.data.repository.AppRepository
 
 class CartViewModel(val repo: AppRepository) : ViewModel() {
-    fun getDetailData(token:String,id:Int)=repo.getDetailData(token,id).asLiveData()
+    fun getDetailBook(token:String,id:Int)=repo.getDetailBook(token,id).asLiveData()
 }

@@ -33,7 +33,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class CartFragment : Fragment() {
 
     private var _binding: FragmentCartBinding? = null
-    private val viewModel: ListBookViewModel by viewModel()
+    private val viewModel: CartViewModel by viewModel()
     private lateinit var recyclerView:RecyclerView
     private lateinit var btnPeminjaman:Button
 
@@ -81,7 +81,7 @@ class CartFragment : Fragment() {
         val booklist= mutableListOf<ListCart>()
         for (ids in id) {
             Log.e("potition1",ids)
-            viewModel.getDetailData(Prefs.token,ids.toInt()).observe(viewLifecycleOwner) {
+            viewModel.getDetailBook(Prefs.token,ids.toInt()).observe(viewLifecycleOwner) {
             when (it.state) {
                 State.SUCCESS -> {
                     val bookResponse = it.data?.data
