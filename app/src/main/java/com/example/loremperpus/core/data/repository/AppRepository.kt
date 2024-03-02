@@ -4,11 +4,11 @@ import android.util.Log
 import com.example.loremperpus.core.data.source.local.LocalDataSource
 import com.example.loremperpus.core.data.source.remote.RemoteDataSouce
 import com.example.loremperpus.core.data.source.remote.network.Resource
+import com.example.loremperpus.core.data.source.remote.request.RatingsRequest
 import com.example.loremperpus.core.data.source.remote.request.LandingRequest
 import com.example.loremperpus.core.data.source.remote.request.ListLendingRequest
 import com.example.loremperpus.core.data.source.remote.request.LoginRequest
 import com.example.loremperpus.core.data.source.remote.request.RegisterRequest
-import com.example.loremperpus.core.data.source.remote.request.RegisterWithGoogleRequest
 import com.inyongtisto.myhelper.extension.getErrorBody
 import kotlinx.coroutines.flow.flow
 
@@ -190,6 +190,57 @@ class AppRepository(val local:LocalDataSource,val remote:RemoteDataSouce) {
         emit(Resource.loading(null))
         try {
             remote.getDetailHistoryLending(token,id).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun postComment(token:String,request: RatingsRequest) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.postComment(token,request).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun getComment(token:String,id:Int) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.getComment(token,id).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun checkComment(token:String,id:Int) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.checkComment(token,id).let {
                 if (it.isSuccessful){
                     val body=it.body()
                     emit(Resource.success(body))

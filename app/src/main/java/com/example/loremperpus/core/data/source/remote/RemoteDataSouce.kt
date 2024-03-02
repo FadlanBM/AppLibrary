@@ -1,11 +1,11 @@
 package com.example.loremperpus.core.data.source.remote
 
 import com.example.loremperpus.core.data.source.remote.network.ApiService
+import com.example.loremperpus.core.data.source.remote.request.RatingsRequest
 import com.example.loremperpus.core.data.source.remote.request.LandingRequest
 import com.example.loremperpus.core.data.source.remote.request.ListLendingRequest
 import com.example.loremperpus.core.data.source.remote.request.LoginRequest
 import com.example.loremperpus.core.data.source.remote.request.RegisterRequest
-import com.example.loremperpus.core.data.source.remote.request.RegisterWithGoogleRequest
 
 class RemoteDataSouce(private val api:ApiService) {
     suspend fun register(data:RegisterRequest)=api.register(data)
@@ -19,4 +19,7 @@ class RemoteDataSouce(private val api:ApiService) {
     suspend fun getDetailDataLendings(token:String,id:Int)=api.getDetailDataLendings(token,id)
     suspend fun postDataListLandings(token:String,request:ListLendingRequest)=api.postDataListLandings(token,request)
     suspend fun getDetailHistoryLending(token:String,id:Int)=api.getDetailHistoryLending(token,id)
+    suspend fun postComment(token:String,request:RatingsRequest)=api.postComment(token,request)
+    suspend fun getComment(token:String,id:Int)=api.getComment(token,id)
+    suspend fun checkComment(token:String,id:Int)=api.checkComment(token,id)
 }

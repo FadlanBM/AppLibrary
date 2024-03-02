@@ -48,12 +48,12 @@ class LendingFormActivity : AppCompatActivity() {
                 when (it.state) {
                     State.SUCCESS -> {
                         val bookResponse = it.data?.data
-                        val id=bookResponse?.ID.toString()
+                        val idlist=bookResponse?.ID.toString()
                         val title=bookResponse?.title.toString()
                         val author=bookResponse?.author.toString()
                         val releseTH=bookResponse?.year_published.toString()
                         val img=bookResponse?.img.toString()
-                        booklist.add(ListCart(id,author,img,releseTH,title))
+                        booklist.add(ListCart(idlist,author,img,releseTH,title))
                         val adapter=ListLendingRV(booklist,this,binding,viewModel,this)
                         recyclerView.adapter=adapter
                     }

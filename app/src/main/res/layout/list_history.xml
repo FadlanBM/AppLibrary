@@ -150,17 +150,17 @@
                   <LinearLayout
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:id="@+id/llToViewHistory"
+                      android:id="@+id/llToListHistory"
                       >
                       <ImageView
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_gravity="center"
-                          android:src="@drawable/eye"/>
+                          android:src="@drawable/list"/>
                       <TextView
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:text="View"
+                          android:text="List Book"
                           android:layout_gravity="center"
                           android:textSize="@dimen/_14ssp"
                           android:fontFamily="@font/poppinsregular"
@@ -169,7 +169,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_80sdp"
+                        android:layout_marginStart="@dimen/_50sdp"
                         android:id="@+id/llDeleteHistory"
                         >
                         <ImageView

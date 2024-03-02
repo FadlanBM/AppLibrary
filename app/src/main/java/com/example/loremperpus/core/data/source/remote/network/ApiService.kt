@@ -1,5 +1,6 @@
 package com.example.loremperpus.core.data.source.remote.network
 
+import com.example.loremperpus.core.data.source.remote.request.RatingsRequest
 import com.example.loremperpus.core.data.source.remote.request.LandingRequest
 import com.example.loremperpus.core.data.source.remote.request.ListLendingRequest
 import com.example.loremperpus.core.data.source.remote.request.LoginRequest
@@ -8,9 +9,11 @@ import com.example.loremperpus.core.data.source.remote.response.BookDetailRespon
 import com.example.loremperpus.core.data.source.remote.response.BookResponse
 import com.example.loremperpus.core.data.source.remote.response.CategoryResponse
 import com.example.loremperpus.core.data.source.remote.response.LendingResponse
+import com.example.loremperpus.core.data.source.remote.response.ListHistorylResponse
 import com.example.loremperpus.core.data.source.remote.response.ListLending
 import com.example.loremperpus.core.data.source.remote.response.LoginRespose
 import com.example.loremperpus.core.data.source.remote.response.MeResponse
+import com.example.loremperpus.core.data.source.remote.response.RatingsResponse
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
@@ -66,11 +69,26 @@ interface ApiService {
     @POST("lending/list")
     suspend fun postDataListLandings(
         @Header("Authorization") token: String,
-        @Body lading:ListLendingRequest
+        @Body landing:ListLendingRequest
     ): Response<ResponseBody>
     @GET("lending/history/{id}")
     suspend fun getDetailHistoryLending(
         @Header("Authorization") token: String,
         @Path("id") lendingID: Int
+    ): Response<ListHistorylResponse>
+    @POST("comment")
+    suspend fun postComment(
+        @Header("Authorization") token: String,
+        @Body comment:RatingsRequest
+    ): Response<ResponseBody>
+    @GET("comment/{id}")
+    suspend fun getComment(
+        @Header("Authorization") token: String,
+        @Path("id") bookID: Int
+    ): Response<RatingsResponse>
+    @GET("comment/chack/{id}")
+    suspend fun checkComment(
+        @Header("Authorization") token: String,
+        @Path("id") bookID: Int
     ): Response<ResponseBody>
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.history.DetailHistoryActivity">
+    tools:context=".ui.reviews.CommentActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,8 +23,9 @@
         android:layout_below="@+id/ll_navbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_detail_history"
+        tools:listitem="@layout/list_comment"
         android:layout_marginHorizontal="@dimen/_5sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:id="@+id/RvListHistory"/>
+        android:id="@+id/RvCommentHistory"/>
+
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.loremperpus.ui.list_book
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,9 +16,11 @@ import com.example.loremperpus.core.data.source.remote.network.State
 import com.example.loremperpus.databinding.ActivityDetailBookBinding
 import com.example.loremperpus.item.ListBook
 import com.example.loremperpus.item.ListCategory
+import com.example.loremperpus.ui.reviews.CommentActivity
 import com.example.loremperpus.util.CartSharePreft
 import com.example.loremperpus.util.Constants
 import com.example.loremperpus.util.Prefs
+import com.inyongtisto.myhelper.extension.setToolbar
 import com.inyongtisto.myhelper.extension.toastWarning
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,6 +34,7 @@ class DetailBookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityDetailBookBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setToolbar(binding.toolBarUpdatePeminjam,"Kembali")
         rvListCategory=binding.CategoryListRv
 
         val id=intent.getIntExtra("id_Book",0)
@@ -51,6 +55,12 @@ class DetailBookActivity : AppCompatActivity() {
                 CartSharePreft(this).saveId(id.toString())
                 showDialogCart(this,"Success","Success Add Cart")
             }
+        }
+
+        binding.btnToComment.setOnClickListener {
+            val intent=Intent(this,CommentActivity::class.java)
+            intent.putExtra("id_book",id)
+            startActivity(intent)
         }
     }
 
@@ -125,5 +135,10 @@ class DetailBookActivity : AppCompatActivity() {
         // Create the AlertDialog object and show it
         val dialog = builder.create()
         dialog.show()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

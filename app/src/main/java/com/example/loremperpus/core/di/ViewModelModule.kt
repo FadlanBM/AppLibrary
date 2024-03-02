@@ -6,6 +6,7 @@ import com.example.loremperpus.ui.auth.AuthViewModel
 import com.example.loremperpus.ui.cart.CartViewModel
 import com.example.loremperpus.ui.history.HistoryViewModel
 import com.example.loremperpus.ui.list_book.ListBookViewModel
+import com.example.loremperpus.ui.reviews.ReviewsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -15,4 +16,5 @@ val viewModelModule= module {
     viewModel { CartViewModel(get()) }
     viewModel { LandingBookViewModel(get()) }
     viewModel { HistoryViewModel(get()) }
+    viewModel { ReviewsViewModel(get()) }
 }
