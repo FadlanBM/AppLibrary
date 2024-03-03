@@ -9,6 +9,7 @@ import com.example.loremperpus.core.data.source.remote.response.BookDetailRespon
 import com.example.loremperpus.core.data.source.remote.response.BookResponse
 import com.example.loremperpus.core.data.source.remote.response.CategoryResponse
 import com.example.loremperpus.core.data.source.remote.response.LendingResponse
+import com.example.loremperpus.core.data.source.remote.response.LikeResponse
 import com.example.loremperpus.core.data.source.remote.response.ListHistorylResponse
 import com.example.loremperpus.core.data.source.remote.response.ListLending
 import com.example.loremperpus.core.data.source.remote.response.LoginRespose
@@ -17,6 +18,7 @@ import com.example.loremperpus.core.data.source.remote.response.RatingsResponse
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -76,6 +78,11 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") lendingID: Int
     ): Response<ListHistorylResponse>
+    @DELETE("lending/delete/{id}")
+    suspend fun DeletelHistoryLending(
+        @Header("Authorization") token: String,
+        @Path("id") lendingID: Int
+    ): Response<ResponseBody>
     @POST("comment")
     suspend fun postComment(
         @Header("Authorization") token: String,
@@ -86,8 +93,27 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") bookID: Int
     ): Response<RatingsResponse>
-    @GET("comment/chack/{id}")
+    @GET("comment/check/{id}")
     suspend fun checkComment(
+        @Header("Authorization") token: String,
+        @Path("id") bookID: Int
+    ): Response<ResponseBody>
+    @GET("collection")
+    suspend fun getWishlist(
+        @Header("Authorization") token: String,
+    ): Response<LikeResponse>
+    @GET("collection/check/{id}")
+    suspend fun checkLove(
+        @Header("Authorization") token: String,
+        @Path("id") bookID: Int
+    ): Response<ResponseBody>
+    @POST("collection/create/{id}")
+    suspend fun postLove(
+        @Header("Authorization") token: String,
+        @Path("id") bookID: Int
+    ): Response<ResponseBody>
+    @DELETE("collection/delete/{id}")
+    suspend fun deleteLove(
         @Header("Authorization") token: String,
         @Path("id") bookID: Int
     ): Response<ResponseBody>

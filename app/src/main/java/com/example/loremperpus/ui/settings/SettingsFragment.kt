@@ -4,17 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.loremperpus.AdapterRV.AdapterListSetting
 import com.example.loremperpus.databinding.FragmentNotificationsBinding
+import com.example.loremperpus.item.ListSetting
 
 class SettingsFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
+    private lateinit var recyclerViewSettings: RecyclerView
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,16 +23,21 @@ class SettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val settingsViewModel =
-            ViewModelProvider(this).get(SettingsViewModel::class.java)
-
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        recyclerViewSettings=binding.recyclerViewSettings
+        val settingsList = listOf(
+            ListSetting("Data Pribadi", "Melihat Data Pribadi"),
+            ListSetting("Ubah Data Pribadi", "Edit Data Pribadi"),
+            ListSetting("Reset Password", "Reset Password"),
+            ListSetting("Wishlist", "Wishlist"),
+            ListSetting("Logout", "Keluar Dari Akun"),
+        )
 
-        val textView: TextView = binding.textNotifications
-        settingsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        val settingsAdapter = AdapterListSetting(settingsList,requireContext())
+        recyclerViewSettings.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewSettings.adapter = settingsAdapter
+
         return root
     }
 

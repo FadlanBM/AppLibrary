@@ -1,4 +1,4 @@
-package com.example.loremperpus.ui.list_book
+package com.example.loremperpus.ui.Wishlish
 
 import android.content.Context
 import android.content.Intent
@@ -12,28 +12,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.loremperpus.AdapterRV.CategoryRV
 import com.example.loremperpus.R
 import com.example.loremperpus.core.data.source.remote.network.State
-import com.example.loremperpus.databinding.ActivityDetailBookBinding
+import com.example.loremperpus.databinding.ActivityDetailWishlishBinding
 import com.example.loremperpus.item.ListCategory
-import com.example.loremperpus.ui.Wishlish.WishlishViewModel
+import com.example.loremperpus.ui.list_book.ListBookViewModel
 import com.example.loremperpus.ui.reviews.CommentActivity
 import com.example.loremperpus.util.CartSharePreft
 import com.example.loremperpus.util.Constants
 import com.example.loremperpus.util.Prefs
+import com.inyongtisto.myhelper.extension.pushActivity
 import com.inyongtisto.myhelper.extension.setToolbar
 import com.inyongtisto.myhelper.extension.toastWarning
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DetailBookActivity : AppCompatActivity() {
+class DetailWishListActivity : AppCompatActivity() {
     private val viewModel: ListBookViewModel by viewModel()
     private val viewModelLike: WishlishViewModel by viewModel()
-    private lateinit var binding:ActivityDetailBookBinding
+    private lateinit var binding:ActivityDetailWishlishBinding
     private lateinit var rvListCategory:RecyclerView
     private lateinit var toggleButtonLike:ToggleButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityDetailBookBinding.inflate(layoutInflater)
+        binding=ActivityDetailWishlishBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setToolbar(binding.toolBarUpdatePeminjam,"Kembali")
         rvListCategory=binding.CategoryListRv
@@ -217,5 +218,10 @@ class DetailBookActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        pushActivity(WishlishActivity::class.java)
     }
 }

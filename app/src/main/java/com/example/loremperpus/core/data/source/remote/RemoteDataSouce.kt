@@ -19,7 +19,12 @@ class RemoteDataSouce(private val api:ApiService) {
     suspend fun getDetailDataLendings(token:String,id:Int)=api.getDetailDataLendings(token,id)
     suspend fun postDataListLandings(token:String,request:ListLendingRequest)=api.postDataListLandings(token,request)
     suspend fun getDetailHistoryLending(token:String,id:Int)=api.getDetailHistoryLending(token,id)
+    suspend fun DeletelHistoryLending(token:String,id:Int)=api.DeletelHistoryLending(token,id)
     suspend fun postComment(token:String,request:RatingsRequest)=api.postComment(token,request)
     suspend fun getComment(token:String,id:Int)=api.getComment(token,id)
     suspend fun checkComment(token:String,id:Int)=api.checkComment(token,id)
+    suspend fun checkLove(token:String,id:Int)=api.checkLove(token,id)
+    suspend fun postLove(token:String,id:Int)=api.postLove(token,id)
+    suspend fun deleteLove(token:String,id:Int)=api.deleteLove(token,id)
+    suspend fun getWishlist(token:String)=api.getWishlist(token)
 }

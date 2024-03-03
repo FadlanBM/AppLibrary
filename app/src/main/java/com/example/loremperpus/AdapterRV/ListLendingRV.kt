@@ -144,6 +144,7 @@ class ListLendingRV(
                     State.SUCCESS -> {
                         val intent=Intent(context,GenerateQRActivity::class.java)
                         intent.putExtra("id",id)
+                        CartSharePreft(context).clearCart()
                         context.startActivity(intent)
                     }
 

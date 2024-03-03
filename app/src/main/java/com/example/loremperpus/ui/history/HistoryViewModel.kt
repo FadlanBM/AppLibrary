@@ -9,4 +9,5 @@ class HistoryViewModel(val repo: AppRepository) : ViewModel() {
     fun getDetailHistoryLending(token:String,id:Int)=repo.getDetailHistoryLending(token,id).asLiveData()
     fun getLending(token:String)=repo.getLending(token).asLiveData()
     fun checkComment(token:String,id:Int)=repo.checkComment(token,id).asLiveData()
+    fun DeletelHistoryLending(token:String,id:Int)=repo.DeletelHistoryLending(token,id).asLiveData()
 }

@@ -54,7 +54,7 @@ class HistoryFragment : Fragment() {
                                 val status=item.status
                                 lendinglist.add(ListHistoryLending(id,code,borrowDate,returnDate,lastDate,status))
                             }
-                            val adapter= HistoryLendingRV(lendinglist,requireContext())
+                            val adapter= HistoryLendingRV(lendinglist,requireContext(),viewModel,viewLifecycleOwner)
                             recyclerView.adapter=adapter
                         }
                     }

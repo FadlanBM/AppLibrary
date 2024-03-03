@@ -1,10 +1,12 @@
 package com.example.loremperpus.ui
 
 import android.os.Bundle
+import android.view.Menu
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.loremperpus.R
@@ -27,11 +29,6 @@ class MenuActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_menu)
 
         navView.setupWithNavController(navController)
-
-        if (status == "cart") {
-            navController.navigate(R.id.navigation_cart)
-        }
-
-
     }
+
 }

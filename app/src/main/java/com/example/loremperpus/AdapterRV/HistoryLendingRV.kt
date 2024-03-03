@@ -2,21 +2,33 @@ package com.example.loremperpus.AdapterRV
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loremperpus.R
+import com.example.loremperpus.core.data.source.remote.network.State
 import com.example.loremperpus.item.ListHistoryLending
+import com.example.loremperpus.ui.Lending.LandingBookViewModel
+import com.example.loremperpus.ui.MenuActivity
 import com.example.loremperpus.ui.history.DetailHistoryActivity
+import com.example.loremperpus.ui.history.HistoryViewModel
 import com.example.loremperpus.ui.history.ShowQRActivity
+import com.example.loremperpus.util.Prefs
+import com.inyongtisto.myhelper.extension.pushActivity
+import com.inyongtisto.myhelper.extension.toastWarning
 
 class HistoryLendingRV(
     val item: List<ListHistoryLending>,
     val context: Context,
+    val viewModel: HistoryViewModel,
+    val viewLifecycleOwner:LifecycleOwner
 ) : RecyclerView.Adapter<HistoryLendingRV.ViewHolder>(){
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val code: TextView =view.findViewById(R.id.tvCodeHistory)
@@ -25,7 +37,6 @@ class HistoryLendingRV(
         val returnDate: TextView =view.findViewById(R.id.tvReturnDateHistory)
         val status: TextView =view.findViewById(R.id.tvStatusHistory)
         val toList: LinearLayout =view.findViewById(R.id.llToListHistory)
-        val toDelete: LinearLayout =view.findViewById(R.id.llDeleteHistory)
         val showQR:ImageView=view.findViewById(R.id.btnShowQr)
     }
 
@@ -60,4 +71,5 @@ class HistoryLendingRV(
         }
 
     }
+
 }

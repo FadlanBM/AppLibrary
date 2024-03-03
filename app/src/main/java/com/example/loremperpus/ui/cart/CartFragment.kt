@@ -7,27 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loremperpus.AdapterRV.CartRV
 import com.example.loremperpus.core.data.source.remote.network.State
 import com.example.loremperpus.databinding.FragmentCartBinding
-import com.example.loremperpus.item.ListBook
 import com.example.loremperpus.item.ListCart
 import com.example.loremperpus.ui.Lending.LendingFormActivity
-import com.example.loremperpus.ui.list_book.ListBookViewModel
 import com.example.loremperpus.util.CartSharePreft
-import com.example.loremperpus.util.Constants
 import com.example.loremperpus.util.Prefs
 import com.example.loremperpus.util.SwipeToDeleteCallback
-import com.inyongtisto.myhelper.extension.pushActivity
 import com.inyongtisto.myhelper.extension.toastWarning
-import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CartFragment : Fragment() {
