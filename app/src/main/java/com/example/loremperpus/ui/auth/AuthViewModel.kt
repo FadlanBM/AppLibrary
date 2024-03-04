@@ -10,5 +10,4 @@ import com.example.loremperpus.core.data.source.remote.request.RegisterWithGoogl
 class AuthViewModel(val repo:AppRepository): ViewModel() {
     fun register(data:RegisterRequest)=repo.register(data).asLiveData()
     fun login(data:LoginRequest)=repo.login(data).asLiveData()
-    fun getme(token:String)=repo.getme(token).asLiveData()
 }

@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.loremperpus.AdapterRV.AdapterListSetting
 import com.example.loremperpus.databinding.FragmentNotificationsBinding
 import com.example.loremperpus.item.ListSetting
+import com.example.loremperpus.ui.Wishlish.WishlishViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
     private lateinit var recyclerViewSettings: RecyclerView
+    private val viewModel: SettingsViewModel by viewModel()
 
     private val binding get() = _binding!!
 
@@ -27,14 +30,13 @@ class SettingsFragment : Fragment() {
         val root: View = binding.root
         recyclerViewSettings=binding.recyclerViewSettings
         val settingsList = listOf(
-            ListSetting("Data Pribadi", "Melihat Data Pribadi"),
-            ListSetting("Ubah Data Pribadi", "Edit Data Pribadi"),
             ListSetting("Reset Password", "Reset Password"),
             ListSetting("Wishlist", "Wishlist"),
+            ListSetting("Delete Akun", "Delete Akun"),
             ListSetting("Logout", "Keluar Dari Akun"),
         )
 
-        val settingsAdapter = AdapterListSetting(settingsList,requireContext())
+        val settingsAdapter = AdapterListSetting(settingsList,requireContext(),viewModel,this)
         recyclerViewSettings.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewSettings.adapter = settingsAdapter
 

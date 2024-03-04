@@ -66,6 +66,23 @@ class AppRepository(val local:LocalDataSource,val remote:RemoteDataSouce) {
             Log.e("TAG","Login Error" + e.message)
         }
     }
+    fun getmedelete(token:String) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.getmedelete(token).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
     fun getBook(token:String) = flow {
         emit(Resource.loading(null))
         try {

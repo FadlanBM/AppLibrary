@@ -35,8 +35,12 @@ interface ApiService {
         @Body login:LoginRequest
     ): Response<LoginRespose>
 
-    @GET("auth/me")
+    @GET("me")
     suspend fun getme(
+        @Header("Authorization") token: String,
+    ): Response<MeResponse>
+    @DELETE("me/delete")
+    suspend fun getmedelete(
         @Header("Authorization") token: String,
     ): Response<MeResponse>
 

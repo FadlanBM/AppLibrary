@@ -64,4 +64,9 @@ class WishlishActivity : AppCompatActivity() {
         pushActivity(MenuActivity::class.java)
         return super.onSupportNavigateUp()
     }
+
+    override fun onBackPressed() {
+        pushActivity(MenuActivity::class.java)
+        super.onBackPressed()
+    }
 }
